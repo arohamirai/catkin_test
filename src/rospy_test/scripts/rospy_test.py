@@ -38,16 +38,29 @@
 
 import rospy
 from std_msgs.msg import String
+from visual_servo_msgs.action import *
+
+
+class rospy_test(object):
+    def __init__(self):
+        rospy.init_node('rospy_node', anonymous=True)
+        fb_sub = rospy.Subscriber("ibvs_constrained_action", visual_servo_msgs::acton::ibv)
+
+
+def plotTrajectory():
+    pass
+
 
 def talker():
     pub = rospy.Publisher('chatter', String, queue_size=10)
     rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(10) # 10hz
+    rate = rospy.Rate(10)  # 10hz
     while not rospy.is_shutdown():
         hello_str = "hello world %s" % rospy.get_time()
         rospy.loginfo(hello_str)
         pub.publish(hello_str)
         rate.sleep()
+
 
 if __name__ == '__main__':
     try:
