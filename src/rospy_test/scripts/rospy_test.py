@@ -44,7 +44,7 @@ from visual_servo_msgs.action import *
 class rospy_test(object):
     def __init__(self):
         rospy.init_node('rospy_node', anonymous=True)
-        fb_sub = rospy.Subscriber("ibvs_constrained_action", visual_servo_msgs::acton::ibv)
+        #fb_sub = rospy.Subscriber("ibvs_constrained_action", visual_servo_msgs::acton::ibv)
 
 
 def plotTrajectory():
