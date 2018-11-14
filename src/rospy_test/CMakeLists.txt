@@ -10,7 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
 )
-
+catkin_package(
+)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -53,6 +54,34 @@ find_package(catkin REQUIRED COMPONENTS
 #   cfg/DynReconf1.cfg
 #   cfg/DynReconf2.cfg
 # )
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+install(PROGRAMS
+scripts/rospy_test.py
+DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# lib, eecutable
+#install(TARGETS
+#     ibvs_constrained_client
+#    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#)
+# Install source headers.
+file(GLOB_RECURSE HDRS "*.h")
+foreach(HDR ${HDRS})
+  file(RELATIVE_PATH REL_FIL ${PROJECT_SOURCE_DIR} ${HDR})
+  get_filename_component(INSTALL_DIR ${REL_FIL} DIRECTORY)
+  install(
+    FILES
+      ${HDR}
+    DESTINATION
+      ${INSTALL_DIR}
+  )
+endforeach()
+
 
 #if(CATKIN_ENABLE_TESTING)
 #  find_package(rostest)

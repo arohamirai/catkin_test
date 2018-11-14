@@ -38,8 +38,6 @@
 
 import rospy
 from std_msgs.msg import String
-from visual_servo_msgs.action import *
-
 
 class rospy_test(object):
     def __init__(self):
