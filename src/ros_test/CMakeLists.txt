@@ -157,6 +157,29 @@ add_dependencies(test_node ros_test_generate_messages_cpp)
 #############
 ## Install ##
 #############
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(TARGETS
+    test_node
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# Install source headers.
+file(GLOB_RECURSE HDRS "*.h")
+foreach(HDR ${HDRS})
+  file(RELATIVE_PATH REL_FIL ${PROJECT_SOURCE_DIR} ${HDR})
+  get_filename_component(INSTALL_DIR ${REL_FIL} DIRECTORY)
+  install(
+    FILES
+      ${HDR}
+    DESTINATION
+      ${INSTALL_DIR}
+  )
+endforeach()
 
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
