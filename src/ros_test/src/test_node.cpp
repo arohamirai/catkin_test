@@ -31,6 +31,7 @@ TestNode::~TestNode() {}
 
 void TestNode::handleTopic(const std_msgs::Int8ConstPtr& msg) {
   ROS_WARN("topic recieved. id:%d", msg->data);
+  ROS_INFO_THROTTLE(0.5, "HELLO WORLD");
 }
 bool TestNode::TestService(std_srvs::SetBool::Request& request,
                            std_srvs::SetBool::Response& response) {

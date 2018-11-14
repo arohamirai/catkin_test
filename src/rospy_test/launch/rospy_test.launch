@@ -1,0 +1,3 @@
+<launch>
+  <node name="rospy_test" pkg="rospy_test" type="rospy_test.py" output="screen"/>
+</launch>
